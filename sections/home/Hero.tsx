@@ -1,9 +1,10 @@
 'use client'
-import Button from '@/components/ui/button'
+
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import {motion} from 'framer-motion'
+import { Button } from '@nextui-org/react'
 const Hero = () => {
    const router= useRouter()
    const swimAnimation:any = {
@@ -22,20 +23,21 @@ const Hero = () => {
       whileInView={{ x: 0, opacity: 1 }} 
       viewport={{ once: true, amount: 0.5 }} 
       transition={{ type: "spring", stiffness: 50, duration: 0.8 }}
-     className='space-y-4' >
-     <h1 className='text-primary max-lg:h3 max-xl:h2 h1 max-md:text-center' >
-       up your <span className='text-secondary'> skills </span>
-       to advance your <span className='text-secondary'> career </span>path
+     className='space-y-6' >
+     <h1 className='text-primary max-lg:h3 max-xl:h2 h1 capitalize max-md:text-center' >
+    
+     Boostez vos <span className='text-secondary'>compétences</span> pour votre <span className='text-secondary'>avenir</span>
        </h1>
       <p className='body max-md:text-center' >
-      Learn UI-UX Design skills with weekend UX . The latest online learning system and material that help your knowledge growing.
+Apprenez les bases de l’informatique, développez vos connaissances en programmation et préparez votre avenir dès aujourd’hui.
       </p>
 
-      <div className='w-full flex max-md:justify-center'>
-      <Button variant='primary' onClick={()=>router.push('/')}>
-      <div className='py-1 px-3 text-xl capitalize'>
-      get started
-      </div>
+      <div className='w-full grid max-md:grid-cols-1  grid-cols-2 max-md:mx-auto max-w-sm gap-x-3 gap-y-6 items-center'>
+      <Button className=' text-white font-medium text-xl' color='primary' size='lg'>
+      Commencer
+      </Button>
+      <Button className=' text-primary font-medium text-xl' color='primary' size='lg' variant='bordered'>
+      Lire plus
       </Button>
       </div>
      </motion.div>

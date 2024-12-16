@@ -4,8 +4,9 @@ import Logo from './Logo'
 import { navData } from '@/constants'
 import Link from 'next/link'
 import { Icon } from "@iconify/react";
-import Button from './ui/button'
+
 import { useRouter } from 'next/navigation'
+import { Button } from '@nextui-org/react'
 const Header = () => {
     const router=useRouter()
 
@@ -24,10 +25,9 @@ const Header = () => {
             }
         </ul>
 
-      
-        <Button variant='primary' onClick={()=>router.push('/')}>
+       <Button className='font-medium' size='lg' onPress={()=>router.push('/auth/login')} color='primary'>
         Se connecter
-        </Button>
+       </Button>
        </nav>
        <button className='max-md:block hidden'>
        <Icon icon={'la:bars'} className='size-8 '/>

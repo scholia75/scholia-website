@@ -8,6 +8,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --body: #646464;
+  --muted:'#f0f0f0'
 }
 
 
@@ -18,13 +19,19 @@
 }
 @layer utilities{
   .h1 {
-    @apply text-[64px] font-bold capitalize leading-tight
+    @apply text-[64px] font-bold  leading-tight
   }
   .h2 {
-    @apply text-[56px] font-bold capitalize leading-tight
+    @apply text-[56px] font-bold  leading-tight
   }
   .h3{
-    @apply text-[44px] font-bold capitalize leading-tight
+    @apply text-[44px] font-bold  leading-tight
+  }
+  .h4{
+    @apply text-[36px] font-bold  leading-tight
+  }
+  .h5{
+    @apply text-[28px] font-bold  leading-tight
   }
   .body {
     color: var(--body);

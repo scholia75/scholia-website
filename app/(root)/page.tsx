@@ -1,3 +1,4 @@
+'use client'
 import HomePgae from "@/pages/home";
 
 
