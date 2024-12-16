@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, Input, Form, Card, CardHeader, CardBody, CardFooter } from '@nextui-org/react';
 import Link from 'next/link';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
+import { EnvelopeIcon, EyeIcon, EyeSlashIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 import {motion} from 'framer-motion'
 const LoginForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -59,6 +59,9 @@ const LoginForm = () => {
                 value={value}
                 onBlur={onBlur}
                 onChange={onChange}
+                startContent={
+                  <EnvelopeIcon className="size-6 text-neutral-400" />
+              }
               />
             )}
           />
@@ -85,6 +88,9 @@ const LoginForm = () => {
                 value={value}
                 onBlur={onBlur}
                 onChange={onChange}
+                  startContent={
+                                <LockClosedIcon className="size-6 text-neutral-400" />
+                            }
                 endContent={
                   <button
                     aria-label="toggle password visibility"

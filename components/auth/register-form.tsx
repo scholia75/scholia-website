@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, Input, Form, Card, CardHeader, CardBody, CardFooter } from '@nextui-org/react';
 import Link from 'next/link';
-import { LockClosedIcon,EnvelopeIcon,EyeIcon,EyeSlashIcon } from '@heroicons/react/24/solid'
+import { LockClosedIcon,EnvelopeIcon,EyeIcon,EyeSlashIcon, UserIcon } from '@heroicons/react/24/solid'
 import {motion} from 'framer-motion'
 
 const RegisterForm = () => {
@@ -60,6 +60,9 @@ const RegisterForm = () => {
             value={value}
             onBlur={onBlur}
             onChange={onChange}
+            startContent={
+                <UserIcon className="size-6 text-neutral-400" />
+            }
           />
         )}
       />
@@ -89,6 +92,9 @@ const RegisterForm = () => {
             value={value}
             onBlur={onBlur}
             onChange={onChange}
+            startContent={
+                <EnvelopeIcon className="size-6 text-neutral-400" />
+            }
           />
         )}
       />
@@ -119,6 +125,9 @@ const RegisterForm = () => {
             value={value}
             onBlur={onBlur}
             onChange={onChange}
+            startContent={
+                <LockClosedIcon className="size-6 text-neutral-400" />
+            }
             endContent={
                 <button
                   aria-label="toggle password visibility"
@@ -159,6 +168,9 @@ const RegisterForm = () => {
             value={value}
             onBlur={onBlur}
             onChange={onChange}
+            startContent={
+                <LockClosedIcon className="size-6 text-neutral-400" />
+            }
             endContent={
                 <button
                   aria-label="toggle password visibility"
