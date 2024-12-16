@@ -6,6 +6,10 @@ import { Button, Input, Form, Card, CardHeader, CardBody, CardFooter } from '@ne
 import Link from 'next/link';
 import { EnvelopeIcon, EyeIcon, EyeSlashIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 import {motion} from 'framer-motion'
+interface LoginFromType{
+   email:string;
+   password:string
+}
 const LoginForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const { handleSubmit, control } = useForm({
@@ -15,7 +19,7 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: LoginFromType) => {
     console.log(data);
   };
 
@@ -115,7 +119,7 @@ const LoginForm = () => {
         </Form>
       </CardBody>
       <CardFooter className="flex flex-row flex-wrap justify-center gap-x-1 max-sm:text-sm">
-        <span className="text-neutral-500 text-nowrap">Vous n'avez pas de compte ?</span>
+        <span className="text-neutral-500 text-nowrap">Vous n&apos;avez pas de compte ?</span>
         <Link href={'/auth/register'} className="text-primary font-medium text-nowrap">
           Inscrivez-vous
         </Link>

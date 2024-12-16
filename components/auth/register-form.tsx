@@ -6,7 +6,12 @@ import { Button, Input, Form, Card, CardHeader, CardBody, CardFooter } from '@ne
 import Link from 'next/link';
 import { LockClosedIcon,EnvelopeIcon,EyeIcon,EyeSlashIcon, UserIcon } from '@heroicons/react/24/solid'
 import {motion} from 'framer-motion'
-
+interface RegisterFormType{
+    name:string;
+    email:string;
+    password:string;
+    confirmPassword:string
+ }
 const RegisterForm = () => {
      const [isPasswordVisible, setIsPasswordVisible] = useState(false);
      const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
@@ -19,7 +24,7 @@ const RegisterForm = () => {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: RegisterFormType) => {
     console.log(data);
   };
 
@@ -189,7 +194,7 @@ const RegisterForm = () => {
         )}
       />
 
-      <Button className='w-full font-medium' color='primary' type="submit" size='lg'>S'inscrire</Button>
+      <Button className='w-full font-medium' color='primary' type="submit" size='lg'>S&apos;inscrire</Button>
     </Form>
     </CardBody>
     <CardFooter className='flex flex-row flex-wrap  justify-center gap-x-1   max-sm:text-sm '>
