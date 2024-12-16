@@ -5,6 +5,8 @@ import { Controller, useForm } from 'react-hook-form';
 import { Button, Input, Form, Card, CardHeader, CardBody, CardFooter } from '@nextui-org/react';
 import Link from 'next/link';
 import { LockClosedIcon,EnvelopeIcon,EyeIcon,EyeSlashIcon } from '@heroicons/react/24/solid'
+import {motion} from 'framer-motion'
+
 const RegisterForm = () => {
      const [isPasswordVisible, setIsPasswordVisible] = useState(false);
      const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
@@ -25,7 +27,13 @@ const RegisterForm = () => {
   const password = watch('password');
 
   return (
-   <Card className='p-3  max-w-md mx-auto'>
+  <motion.div 
+  initial={{ y: -100, opacity: 0 }} 
+    whileInView={{ y: 0, opacity: 1 }} 
+    viewport={{ once: true, amount: 0.5 }} 
+    transition={{ type: "spring", stiffness: 50, duration: 0.8 }}
+  className='w-full'>
+     <Card className='p-3  max-w-md mx-auto'>
      <CardHeader className="flex flex-col items-start ">
      <h1 className="text-2xl font-bold uppercase">Créer un compte</h1>
      <p className="body">Remplissez les champs ci-dessous pour créer un nouveau compte. </p>
@@ -177,6 +185,7 @@ const RegisterForm = () => {
     <Link href={'/auth/login'} className=" text-primary font-medium text-nowrap"> Connectez-vous  </Link>
     </CardFooter>
    </Card>
+  </motion.div>
   );
 };
 
