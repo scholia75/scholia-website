@@ -4,11 +4,15 @@ export default {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./sections/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
+        
+        primary:"#2F294D",
+        secondary:"var(--secondary)",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
