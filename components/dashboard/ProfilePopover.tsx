@@ -10,9 +10,9 @@ const ProfilePopover = () => {
         <Popover placement="bottom" showArrow={true} backdrop='blur'>
       <PopoverTrigger>
        <button className='outline-none border-none flex flex-row items-center gap-x-3 '>
-        <ChevronDownIcon className='size-6'/>
+        <ChevronDownIcon className='size-5'/>
         <p className=' font-medium text-medium'>Scholia</p>
-       <Avatar size='lg' src='https://img.freepik.com/photos-gratuite/portrait-homme-souriant-heureux_23-2149022627.jpg?t=st=1734402780~exp=1734406380~hmac=f1f2de687e5cba2b1211a7b0f0a621af81e205a92677af2821cf82add8db8e79&w=740'/>
+       <Avatar size='md' src='https://img.freepik.com/photos-gratuite/portrait-homme-souriant-heureux_23-2149022627.jpg?t=st=1734402780~exp=1734406380~hmac=f1f2de687e5cba2b1211a7b0f0a621af81e205a92677af2821cf82add8db8e79&w=740'/>
        </button>
       </PopoverTrigger>
       

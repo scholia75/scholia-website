@@ -12,9 +12,14 @@ export const dashboardNavs = [
         icon: 'HomeIcon'
     },
     {
+        name: 'Admins',
+        link: '/dashboard/admins',
+        icon:'UsersIcon'
+    },
+    {
         name: 'Partenaire',
         link: '/dashboard/partners',
-        icon: 'UserIcon'
+        icon: 'UserGroupIcon'
     },
     {
         name: 'Étudiants',
@@ -26,4 +31,14 @@ export const dashboardNavs = [
         link: '/dashboard/admissions',
         icon: 'DocumentIcon'
     },
+    {
+        name: 'Formations',
+        link: '/dashboard/training',
+        icon:'ClipboardDocumentListIcon'
+    },
+    {
+        name: 'Niveaux',
+        link: '/dashboard/levels',
+        icon:'QueueListIcon'
+    }
 ];
