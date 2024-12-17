@@ -33,7 +33,7 @@ const Sidebare = () => {
                         <li
                             key={index}
                             className={clsx(
-                                'p-3 rounded-lg hover:bg-primary-50 group transition-all duration-300',
+                                'p-3   rounded-lg hover:bg-primary-50 group transition-all duration-300',
                                 isActive && 'bg-primary-50'
                             )}
                         >
