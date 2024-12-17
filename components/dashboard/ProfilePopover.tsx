@@ -1,7 +1,7 @@
 import React from 'react'
-import {Avatar, Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react";
+import {Avatar, Popover, PopoverTrigger, PopoverContent} from "@nextui-org/react";
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import {Listbox, ListboxItem, cn} from "@nextui-org/react";
+import {Listbox, ListboxItem} from "@nextui-org/react";
 import { Cog6ToothIcon,ArrowRightStartOnRectangleIcon} from '@heroicons/react/24/outline';
 
 const ProfilePopover = () => {
