@@ -52,7 +52,10 @@ const Header = () => {
       isOpen ?'top-0':'-top-[1000px]'
        )}>
         <div className='w-full  flex-row justify-between max-md:flex hidden'>
+         
+          <button className='outline-none border-none' onClick={()=>setIsOpen(false)}>
           <Logo/>
+         </button>
          <button className='outline-none border-none' onClick={()=>setIsOpen(false)}>
          <XMarkIcon className='size-8'/>
          </button>
