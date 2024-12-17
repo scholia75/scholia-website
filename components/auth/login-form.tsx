@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { EnvelopeIcon, EyeIcon, EyeSlashIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 import {motion} from 'framer-motion'
 import { useRouter } from 'next/navigation';
+import { loginUser } from '@/lib/appwrite';
+import {Alert} from "@nextui-org/alert";
 interface LoginFromType{
    email:string;
    password:string
@@ -14,6 +16,8 @@ interface LoginFromType{
 const LoginForm = () => {
   const router=useRouter()
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
   const { handleSubmit, control } = useForm({
     defaultValues: {
       email: '',
@@ -21,9 +25,28 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = (data: LoginFromType) => {
-    console.log(data);
-    router.push('/dashboard')
+  const onSubmit = async(data: LoginFromType) => {
+    setIsLoading(true)
+      try {
+        console.log(data)
+        const {email,password}=data
+      const session=await loginUser(email,password)
+      if(session){
+        router.push('/dashboard')
+      }
+     
+     
+      } catch (error:unknown) {
+       if(error instanceof Error){
+       if(error.message==='Invalid credentials. Please check the email and password.'){
+        setError("Adresse e-mail ou mot de passe incorrect.")
+       }
+        
+       }
+      }finally{
+        setIsLoading(false)
+      }
+    
   };
 
   return (
@@ -115,8 +138,16 @@ const LoginForm = () => {
               />
             )}
           />
+
+{error && <Alert
+        hideIconWrapper
+        color="danger"
+        description={error}
+        title="Erorr"
+        variant="bordered"
+      />}
           <Link href={'/'} className='text-primary font-medium'>Mot de passe oublié ?</Link>
-          <Button className="w-full font-medium" color="primary" size='lg' type="submit" >
+          <Button className="w-full font-medium" color="primary" size='lg' type="submit" isLoading={isLoading} >
             Se connecter
           </Button>
         </Form>

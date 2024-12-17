@@ -19,3 +19,7 @@ export const loginUser = async (email:string, password:string) => {
 
     return session
 }
+export const getUserAvatar=async()=>{
+    const avatar=await account.getPrefs()
+    return avatar
+}
