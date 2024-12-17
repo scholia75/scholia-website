@@ -6,11 +6,13 @@ import { Button, Input, Form, Card, CardHeader, CardBody, CardFooter } from '@ne
 import Link from 'next/link';
 import { EnvelopeIcon, EyeIcon, EyeSlashIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 import {motion} from 'framer-motion'
+import { useRouter } from 'next/navigation';
 interface LoginFromType{
    email:string;
    password:string
 }
 const LoginForm = () => {
+  const router=useRouter()
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const { handleSubmit, control } = useForm({
     defaultValues: {
@@ -21,6 +23,7 @@ const LoginForm = () => {
 
   const onSubmit = (data: LoginFromType) => {
     console.log(data);
+    router.push('/dashboard')
   };
 
   return (
@@ -113,7 +116,7 @@ const LoginForm = () => {
             )}
           />
           <Link href={'/'} className='text-primary font-medium'>Mot de passe oublié ?</Link>
-          <Button className="w-full font-medium" color="primary" size='lg' type="submit">
+          <Button className="w-full font-medium" color="primary" size='lg' type="submit" >
             Se connecter
           </Button>
         </Form>
