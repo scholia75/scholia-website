@@ -15,7 +15,7 @@ const ProfilePopover = () => {
             await account.deleteSession("current");
          router.replace('/auth/login')
         } catch (error) {
-            
+            console.log(error)
         }
       };
     useEffect(() => {

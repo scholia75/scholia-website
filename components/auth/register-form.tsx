@@ -110,7 +110,7 @@ const RegisterForm = () => {
         name="password"
         rules={{
           required: 'Le mot de passe est obligatoire.',
-          minLength: { value: 4, message: 'Le mot de passe doit contenir au moins 4 caractères.' },
+          minLength: { value: 8, message: 'Le mot de passe doit contenir au moins 8 caractères.' },
           pattern: {
             value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
             message: 'Le mot de passe doit contenir au moins une lettre majuscule et un symbole.',

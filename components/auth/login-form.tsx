@@ -102,7 +102,7 @@ const LoginForm = () => {
             name="password"
             rules={{
               required: 'Le mot de passe est obligatoire.',
-              minLength: { value: 4, message: 'Le mot de passe doit contenir au moins 4 caractères.' },
+              minLength: { value: 8, message: 'Le mot de passe doit contenir au moins 8 caractères.' },
             }}
             render={({ field: { value, onChange, onBlur, ref }, fieldState: { invalid, error } }) => (
               <Input
