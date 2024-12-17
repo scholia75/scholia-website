@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Logo from './Logo'
 import { navData } from '@/constants'
 import Link from 'next/link'
-import { Icon } from "@iconify/react";
+
 
 import { useRouter } from 'next/navigation'
 import { Button } from '@nextui-org/react'
@@ -67,7 +67,7 @@ const Header = () => {
             }
         </ul>
 
-       <Button className='font-medium max-md:w-full' size='lg' onPress={()=>{router.push('/auth/login'),setIsOpen(false)}} color='primary'>
+       <Button className='font-medium max-md:w-full' size='lg' onPress={()=>{router.push('/auth/login');setIsOpen(false)}} color='primary'>
         Se connecter
        </Button>
        </nav>
