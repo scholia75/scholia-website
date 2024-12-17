@@ -33,7 +33,7 @@ Apprenez les bases de l’informatique, développez vos connaissances en program
       </p>
 
       <div className='w-full grid max-md:grid-cols-1  grid-cols-2 max-md:mx-auto max-w-sm gap-x-3 gap-y-6 items-center'>
-      <Button className=' text-white font-medium text-xl' color='primary' size='lg'>
+      <Button className=' text-white font-medium text-xl' color='primary' size='lg' onPress={()=>router.push('/auth/register')}>
       Commencer
       </Button>
       <Button className=' text-primary font-medium text-xl' color='primary' size='lg' variant='bordered'>
