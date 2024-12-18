@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, Input, Form, Card, CardHeader, CardBody, CardFooter } from '@nextui-org/react';
 import Link from 'next/link';
-import { EnvelopeIcon, EyeIcon, EyeSlashIcon, LockClosedIcon } from '@heroicons/react/24/solid';
+import { EnvelopeIcon, EyeIcon, EyeSlashIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 import {motion} from 'framer-motion'
 import { useRouter } from 'next/navigation';
 import { loginUser } from '@/lib/appwrite';

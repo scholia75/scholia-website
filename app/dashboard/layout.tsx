@@ -13,7 +13,9 @@ const DashbaordLayout = ({children}:{children:ReactNode}) => {
 <Sidebare/>
    <main className='bg-content2 w-full h-screen'>
     <DashbaordHeader/>
+   <section className='p-6'>
    {children}
+   </section>
    </main>
 </div>
 </SessionProvider>
