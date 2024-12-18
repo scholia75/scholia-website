@@ -2,7 +2,7 @@ import { Client, Account } from 'appwrite';
 
 export const client = new Client();
 const projectData={
-    projectID:process.env.NEXT_PUBLIC_PROJECT_ID || ''
+    projectID:'675ec64e0037ec69f7d8'
 }
 client
     .setEndpoint('https://cloud.appwrite.io/v1')

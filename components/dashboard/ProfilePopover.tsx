@@ -1,8 +1,8 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {Avatar,  DropdownSection} from "@nextui-org/react";
 import { UserCircleIcon,ArrowRightStartOnRectangleIcon,LockClosedIcon,ChevronDownIcon} from '@heroicons/react/24/outline';
-import { account, getUserAvatar } from '@/lib/appwrite';
+import { account } from '@/lib/appwrite';
 import { useRouter } from 'next/navigation';
 import {
     Dropdown,
@@ -13,20 +13,21 @@ import {
   } from "@nextui-org/react";
 import useUserStore from '@/stores/useUserStore';
 const ProfilePopover = () => {
-   const {user}=useUserStore()
+   const {user,clearUser}=useUserStore()
     const router=useRouter()
+
     const logout = async () => {
         try {
             await account.deleteSession("current");
+            
          router.replace('/auth/login')
+         clearUser()
         } catch (error) {
             console.log(error)
         }
       };
-    useEffect(() => {
 
-    }, [])
-    
+  
     
   return (
     <div>
@@ -42,10 +43,10 @@ const ProfilePopover = () => {
          placement="bottom-end" 
          backdrop="blur" >
        <DropdownTrigger>
-      <div className='flex flex-row items-center gap-x-3 cursor-pointer'>
+      <div className='flex flex-row items-center gap-x-2 cursor-pointer'>
         <ChevronDownIcon className='size-6'/>
       <p className='text-lg font-medium'>
-            Scholia
+            {user?.name}
         </p>
           <Avatar
             isBordered
@@ -89,8 +90,8 @@ const ProfilePopover = () => {
                 description: "text-default-500",
 
               }}
-              description="@jrgarciadev"
-              name="Junior Garcia"
+              description={user?.email}
+              name={user?.name}
             />
           </DropdownItem>
               </DropdownSection>

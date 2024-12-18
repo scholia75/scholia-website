@@ -6,12 +6,8 @@ import { Button, Input, Form, Card, CardHeader, CardBody, CardFooter } from '@ne
 import Link from 'next/link';
 import { LockClosedIcon,EnvelopeIcon,EyeIcon,EyeSlashIcon, UserIcon } from '@heroicons/react/24/outline'
 import {motion} from 'framer-motion'
-interface RegisterFormType{
-    name:string;
-    email:string;
-    password:string;
-    confirmPassword:string
- }
+import { RegisterFormType } from '@/types';
+
 const RegisterForm = () => {
      const [isPasswordVisible, setIsPasswordVisible] = useState(false);
      const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);

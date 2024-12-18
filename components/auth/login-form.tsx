@@ -9,15 +9,16 @@ import {motion} from 'framer-motion'
 import { useRouter } from 'next/navigation';
 import { loginUser } from '@/lib/appwrite';
 import {Alert} from "@nextui-org/alert";
-interface LoginFromType{
-   email:string;
-   password:string
-}
+import { LoginFromType } from '@/types';
+
 const LoginForm = () => {
   const router=useRouter()
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState({
+    title:'',
+    message:''
+  })
   const { handleSubmit, control } = useForm({
     defaultValues: {
       email: '',
@@ -39,7 +40,10 @@ const LoginForm = () => {
       } catch (error:unknown) {
        if(error instanceof Error){
        if(error.message==='Invalid credentials. Please check the email and password.'){
-        setError("Adresse e-mail ou mot de passe incorrect.")
+        setError({
+          title:'Identifiants incorrects',
+          message:"Adresse e-mail ou mot de passe incorrect."
+        })
        }
         
        }
@@ -139,11 +143,11 @@ const LoginForm = () => {
             )}
           />
 
-{error && <Alert
+{error.message && <Alert
         hideIconWrapper
         color="danger"
-        description={error}
-        title="Erorr"
+        description={error.message}
+        title={error.title}
         variant="bordered"
       />}
           <Link href={'/'} className='text-primary font-medium'>Mot de passe oublié ?</Link>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { SunIcon,MoonIcon} from '@heroicons/react/24/outline';
+import { SunIcon} from '@heroicons/react/24/outline';
 import { Button } from '@nextui-org/react';
 const ModeToggle = () => {
   return (

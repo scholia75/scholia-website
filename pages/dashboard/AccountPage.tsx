@@ -2,17 +2,19 @@
 import useUserStore from '@/stores/useUserStore'
 import {  Card, CardBody, CardHeader, User } from '@nextui-org/react'
 import React from 'react'
-
+import { CameraIcon} from '@heroicons/react/24/outline';
+import AccountForm from '@/components/dashboard/account-form';
 const AccountPage = () => {
     const {user}=useUserStore()
   return (
-   <div>
+   <div className='space-y-4'>
     <h1 className='text-2xl font-semibold'>
             Compte
         </h1>
-        <Card>
+        <Card className='p-3'>
             <CardHeader>
-          <button className='outline-none border-none'>
+          <button className='outline-none border-none relative'>
+            <CameraIcon className='size-6 absolute bottom-0  z-50 bg-content1 shadow-small rounded-full p-0.5'/>
           <User
       avatarProps={{
         src: user?.avatar,
@@ -29,7 +31,7 @@ const AccountPage = () => {
            
             </CardHeader>
             <CardBody>
-          
+          <AccountForm/>
                 
             </CardBody>
         </Card>
