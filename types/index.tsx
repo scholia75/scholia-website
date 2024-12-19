@@ -15,11 +15,16 @@ export interface RegisterFormType{
     phone:string;
    
  }
+ export interface PasswordFormType{
+    oldPassword:string;
+    newPassword:string;
+    confirmPassword:string
+ }
 export interface UserType{
     id:string;
     name:string;
     email:string;
     phone:string;
     avatar:string;
-    type:string;
+    type:'admin' |'partner'|'student';
 }

@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import {Avatar,  DropdownSection} from "@nextui-org/react";
-import { UserCircleIcon,ArrowRightStartOnRectangleIcon,LockClosedIcon,ChevronDownIcon} from '@heroicons/react/24/outline';
+import { UserCircleIcon,ArrowRightStartOnRectangleIcon,ChevronDownIcon} from '@heroicons/react/24/outline';
 import { account } from '@/lib/appwrite';
 import { useRouter } from 'next/navigation';
 import {
@@ -97,8 +97,8 @@ const ProfilePopover = () => {
               </DropdownSection>
       
           <DropdownSection showDivider aria-label="links">
-          <DropdownItem    startContent={<UserCircleIcon className='text-default-500 size-6'/>}  onPress={()=>router.push('/dashboard/account')}  key="account">Compte</DropdownItem>
-          <DropdownItem  startContent={<LockClosedIcon className='text-default-500 size-6'/>} onPress={()=>router.push('/dashboard/password')} key="password"> Mot de pass</DropdownItem> 
+          <DropdownItem    startContent={<UserCircleIcon className='text-default-500 size-6'/>}  onPress={()=>router.push('/dashboard/profile')}  key="account">Profil</DropdownItem>
+        
           </DropdownSection>
     
           <DropdownItem    startContent={<ArrowRightStartOnRectangleIcon className='text-danger size-6'/>} onPress={logout} key="logout" className='text-danger hover:text-danger' color="danger">

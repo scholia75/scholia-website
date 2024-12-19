@@ -7,9 +7,11 @@ import Link from 'next/link';
 import { EnvelopeIcon, EyeIcon, EyeSlashIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 import {motion} from 'framer-motion'
 import { useRouter } from 'next/navigation';
-import { loginUser } from '@/lib/appwrite';
+
 import {Alert} from "@nextui-org/alert";
 import { LoginFromType } from '@/types';
+import { loginUser } from '@/actions/auth/login';
+import toast from 'react-hot-toast';
 
 const LoginForm = () => {
   const router=useRouter()
@@ -29,7 +31,7 @@ const LoginForm = () => {
   const onSubmit = async(data: LoginFromType) => {
     setIsLoading(true)
       try {
-        console.log(data)
+        
         const {email,password}=data
       const session=await loginUser(email,password)
       if(session){
@@ -39,10 +41,17 @@ const LoginForm = () => {
      
       } catch (error:unknown) {
        if(error instanceof Error){
-       if(error.message==='Invalid credentials. Please check the email and password.'){
+       if(error.message=='User not verified'){
+        toast.success('Lien de vérification envoyé à votre email')
+       }else if(error.message==='Invalid credentials. Please check the email and password.'){
         setError({
           title:'Identifiants incorrects',
           message:"Adresse e-mail ou mot de passe incorrect."
+        })
+       }else{
+        setError({
+          title:'Error',
+          message:error.message
         })
        }
         
@@ -132,7 +141,7 @@ const LoginForm = () => {
                     type="button"
                     onClick={() => setIsPasswordVisible(!isPasswordVisible)}
                   >
-                    {isPasswordVisible ? (
+                    {!isPasswordVisible ? (
                       <EyeIcon className="size-6 text-neutral-400" />
                     ) : (
                       <EyeSlashIcon className="size-6 text-neutral-400" />

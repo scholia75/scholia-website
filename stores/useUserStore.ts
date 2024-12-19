@@ -8,6 +8,7 @@ interface UserStore {
   clearUser: () => void; // Action to clear/reset the user
   updateAvatar: (avatar: string) => void; // Action to update the avatar
   updateUser: (updates: Partial<UserType>) => void; // Action to update specific user fields
+
 }
 
 // Create the Zustand store
@@ -44,6 +45,8 @@ const useUserStore = create<UserStore>((set) => ({
           }
         : null, // If no user exists, return null
     })),
+
+ 
 }));
 
 export default useUserStore;

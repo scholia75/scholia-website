@@ -4,13 +4,15 @@ import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, Input, Form } from '@nextui-org/react';
 import { PhoneIcon,EnvelopeIcon, UserIcon } from '@heroicons/react/24/outline'
-
 import { AccountFormType } from '@/types';
 import useUserStore from '@/stores/useUserStore';
+import { updateAccount } from '@/actions/acoount';
+import toast from 'react-hot-toast';
 
 const AccountForm = () => {
    const {user,updateUser}=useUserStore()
    const [isLoading, setisLoading] = useState(false)
+ 
   const { handleSubmit, control } = useForm({
     defaultValues: {
       name: user?.name || '',
@@ -24,8 +26,17 @@ const AccountForm = () => {
      setisLoading(true)
   try {
     updateUser(data)
+  
+   if(user){
+     await updateAccount(data)
+     toast.success('Compte enregistré avec succès')
+   }
+   
+
   } catch (error) {
-        console.log(error)
+    if(error instanceof Error){
+        toast.error(error.message)
+    }
   }finally{
     setisLoading(false)
   }
@@ -34,7 +45,7 @@ const AccountForm = () => {
  
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} className='gap-y-5'>
+    <Form onSubmit={handleSubmit(onSubmit)} className='grid max-md:grid-cols-1 grid-cols-2 gap-5 w-full'>
     {/* Name Field */}
     <Controller
       control={control}
@@ -45,6 +56,7 @@ const AccountForm = () => {
       render={({ field: { value, onChange, onBlur, ref }, fieldState: { invalid, error } }) => (
         <Input
           ref={ref}
+          className='max-md:col-span-1 col-span-2'
           isRequired
           errorMessage={error?.message}
           validationBehavior="aria"
@@ -85,11 +97,13 @@ const AccountForm = () => {
           type="email"
           placeholder="Entrez votre adresse e-mail"
           value={value}
+          isDisabled
           onBlur={onBlur}
           onChange={onChange}
           startContent={
               <EnvelopeIcon className="size-6 text-neutral-400" />
           }
+         
         />
       )}
     />
@@ -112,6 +126,7 @@ const AccountForm = () => {
            labelPlacement="outside"
           placeholder="Entrez votre numéro de téléphone"
           value={value}
+          isDisabled
           onBlur={onBlur}
           onChange={onChange}
           startContent={
@@ -122,7 +137,7 @@ const AccountForm = () => {
     />
    
 
-    <Button className='w-full font-medium' color='primary' type="submit" size='lg' isLoading={isLoading}>Sauvgarder</Button>
+    <Button className='w-full font-medium max-md:col-span-1 col-span-2' color='primary' type="submit" size='lg' isLoading={isLoading}>Sauvgarder</Button>
   </Form>
   );
 };
