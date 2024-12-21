@@ -2,9 +2,10 @@ import { Client, Account, Databases } from 'appwrite';
 
 export const client = new Client();
 
-const projectID=process.env.NEXT_PUBLIC_PROJECT_ID || ''
-const databaseID=process.env.NEXT_PUBLIC_DATABASE_ID || ''
-
+//const projectID=process.env.NEXT_PUBLIC_PROJECT_ID || ''
+//const databaseID=process.env.NEXT_PUBLIC_DATABASE_ID || ''
+const projectID='675ec64e0037ec69f7d8'
+const databaseID='675ec699003be09a6241'
 export const projectData={
     projectID:projectID,
     databaseID:databaseID,
