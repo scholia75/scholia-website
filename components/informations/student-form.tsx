@@ -168,7 +168,7 @@ const {setStudent}=useStudentStore()
 />
     <div className='max-md:col-span-1 col-span-2 grid grid-cols-2 max-md:grid-cols-1 gap-3'>
     <Button className="w-full font-medium " variant='bordered' color="primary" size='lg' type="button"  onPress={()=>setStep(1)} >
-     Previus
+    Précédent
     </Button>
     <Button className="w-full font-medium " color="primary" size='lg' type="submit"  >
      Suivant

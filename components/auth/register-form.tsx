@@ -181,7 +181,7 @@ const RegisterForm = () => {
     />
 <div className='w-full grid grid-cols-2 max-md:grid-cols-1 gap-3'>
     <Button className="w-full font-medium " variant='bordered' color="primary" size='lg' type="button"  onPress={()=>setStep(2)} >
-     Previus
+    Précédent
     </Button>
     <Button className='w-full font-medium' color='primary' type="submit" size='lg' isLoading={isLoading}>S&apos;inscrire</Button>
     </div>
