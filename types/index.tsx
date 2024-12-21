@@ -1,6 +1,6 @@
+import { CalendarDate } from "@nextui-org/react";
 
 export interface RegisterFormType{
-    name:string;
     email:string;
     password:string;
     confirmPassword:string
@@ -12,7 +12,7 @@ export interface RegisterFormType{
  export interface AccountFormType{
     name:string;
     email:string;
-    phone:string;
+
    
  }
  export interface PasswordFormType{
@@ -24,7 +24,16 @@ export interface UserType{
     id:string;
     name:string;
     email:string;
-    phone:string;
     avatar:string;
     type:'admin' |'partner'|'student';
+}
+
+export interface StudnetType{
+    id:string;
+    firstname:string;
+    lastname:string;
+    birthdate:CalendarDate;
+    birthcountry:string;
+    residancecountry:string;
+    phone:string;
 }

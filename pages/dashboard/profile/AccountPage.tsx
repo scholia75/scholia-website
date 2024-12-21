@@ -20,7 +20,7 @@ isBordered:true
 
 description={user?.email}
 name={
-<h1 className='text-2xl font-medium'>{user?.name}</h1>
+<h1 className='text-2xl font-medium capitalize'>{user?.name}</h1>
 }
 />
   </button>

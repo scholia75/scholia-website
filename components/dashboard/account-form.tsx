@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, Input, Form } from '@nextui-org/react';
-import { PhoneIcon,EnvelopeIcon, UserIcon } from '@heroicons/react/24/outline'
+import { EnvelopeIcon, UserIcon } from '@heroicons/react/24/outline'
 import { AccountFormType } from '@/types';
 import useUserStore from '@/stores/useUserStore';
 import { updateAccount } from '@/actions/acoount';
@@ -17,7 +17,7 @@ const AccountForm = () => {
     defaultValues: {
       name: user?.name || '',
       email: user?.email || '',
-      phone: user?.phone || '',
+    
       
     },
   });
@@ -56,7 +56,7 @@ const AccountForm = () => {
       render={({ field: { value, onChange, onBlur, ref }, fieldState: { invalid, error } }) => (
         <Input
           ref={ref}
-          className='max-md:col-span-1 col-span-2'
+          
           isRequired
           errorMessage={error?.message}
           validationBehavior="aria"
@@ -87,6 +87,7 @@ const AccountForm = () => {
       }}
       render={({ field: { value, onChange, onBlur, ref }, fieldState: { invalid, error } }) => (
         <Input
+         
           ref={ref}
           isRequired
           errorMessage={error?.message}
@@ -108,33 +109,7 @@ const AccountForm = () => {
       )}
     />
 
-  {/* Name Field */}
-  <Controller
-      control={control}
-      name="phone"
-      rules={{
-        required: 'Le nom est obligatoire.',
-      }}
-      render={({ field: { value, onChange, onBlur, ref }, fieldState: { invalid, error } }) => (
-        <Input
-          ref={ref}
-          isRequired
-          errorMessage={error?.message}
-          validationBehavior="aria"
-          isInvalid={invalid}
-          label="Téléphone"
-           labelPlacement="outside"
-          placeholder="Entrez votre numéro de téléphone"
-          value={value}
-          isDisabled
-          onBlur={onBlur}
-          onChange={onChange}
-          startContent={
-              <PhoneIcon className="size-6 text-neutral-400" />
-          }
-        />
-      )}
-    />
+ 
    
 
     <Button className='w-full font-medium max-md:col-span-1 col-span-2' color='primary' type="submit" size='lg' isLoading={isLoading}>Sauvgarder</Button>

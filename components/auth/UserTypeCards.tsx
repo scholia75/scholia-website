@@ -5,7 +5,7 @@ import { UserIcon,AcademicCapIcon } from '@heroicons/react/24/solid';
 import useRegistrationStore from '@/stores/useRegistrationStore';
 
 const UserTypeCards = () => {
-    const {userType,setIsSelected,setUserType}=useRegistrationStore()
+    const {userType,setStep,setUserType}=useRegistrationStore()
    
 
     const hanleSelectUser=(type:'partner'|'student')=>{
@@ -53,7 +53,7 @@ const UserTypeCards = () => {
       </Card>
       </button>
 
-      <Button type='button' color='primary' className='w-full  font-medium' size='lg' onPress={()=>setIsSelected(true)}>Suivant </Button>
+      <Button type='button' color='primary' className='w-full  font-medium' size='lg' onPress={()=>setStep(2)}>Suivant </Button>
     </div>
   )
 }

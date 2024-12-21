@@ -45,7 +45,7 @@ const ProfilePopover = () => {
        <DropdownTrigger>
       <div className='flex flex-row items-center gap-x-2 cursor-pointer'>
         <ChevronDownIcon className='size-6'/>
-      <p className='text-lg font-medium'>
+      <p className='text-lg font-medium capitalize'>
             {user?.name}
         </p>
           <Avatar

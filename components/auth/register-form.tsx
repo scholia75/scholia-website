@@ -3,21 +3,23 @@
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, Input, Form} from '@nextui-org/react';
-import Link from 'next/link';
-import { LockClosedIcon,EnvelopeIcon,EyeIcon,EyeSlashIcon, UserIcon } from '@heroicons/react/24/outline'
+import { LockClosedIcon,EnvelopeIcon,EyeIcon,EyeSlashIcon } from '@heroicons/react/24/outline'
 import { RegisterFormType } from '@/types';
 import toast from 'react-hot-toast';
 import { register } from '@/actions/auth/register';
 import useRegistrationStore from '@/stores/useRegistrationStore';
+import useStudentStore from '@/stores/useStudentStore';
+import { createStudent } from '@/actions/student';
 
 const RegisterForm = () => {
+  
+    const {student}=useStudentStore()
      const [isPasswordVisible, setIsPasswordVisible] = useState(false);
      const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
      const [isLoading, setIsLoading] = useState(false)
-     const {userType}=useRegistrationStore()
+     const {userType,setStep}=useRegistrationStore()
   const { handleSubmit, control, watch,reset } = useForm({
     defaultValues: {
-      name: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -27,10 +29,17 @@ const RegisterForm = () => {
   const onSubmit = async(data: RegisterFormType) => {
     setIsLoading(true)
     try {
-        const {email,password,name}=data
-        await register(email,password,name,userType)
-        toast.success('Lien de vérification envoyé à votre email')
+        const {email,password}=data
+      if(student){
+        const name=student.firstname+' '+student.lastname
+        const id=student.id
+        await register(id,email,password,name,userType)
+        await createStudent(student)
+      }
+        
+       // toast.success('Lien de vérification envoyé à votre email')
         reset()
+        setStep(4)
     } catch (error) {
         if(error instanceof Error){
             toast.error(error.message)
@@ -46,35 +55,8 @@ const RegisterForm = () => {
 
   return (
  
-    <Form onSubmit={handleSubmit(onSubmit)} className='gap-y-5'>
-    {/* Name Field */}
-    <Controller
-      control={control}
-      name="name"
-      rules={{
-        required: 'Le nom est obligatoire.',
-      }}
-      render={({ field: { value, onChange, onBlur, ref }, fieldState: { invalid, error } }) => (
-        <Input
-          ref={ref}
-          isRequired
-          errorMessage={error?.message}
-          validationBehavior="aria"
-          isInvalid={invalid}
-          label="Nom"
-           labelPlacement="outside"
-          placeholder="Entrez votre nom"
-          value={value}
-          onBlur={onBlur}
-          onChange={onChange}
-          startContent={
-              <UserIcon className="size-6 text-neutral-400" />
-          }
-        />
-      )}
-    />
-
-    {/* Email Field */}
+    <Form onSubmit={handleSubmit(onSubmit)}  className="gap-y-5">
+         {/* Email Field */}
     <Controller
       control={control}
       name="email"
@@ -105,7 +87,7 @@ const RegisterForm = () => {
         />
       )}
     />
-
+     
     {/* Password Field */}
     <Controller
       control={control}
@@ -124,6 +106,7 @@ const RegisterForm = () => {
           isRequired
           errorMessage={error?.message}
           validationBehavior="aria"
+          className='max-md:col-span-1 col-span-2'
           isInvalid={invalid}
           label="Mot de passe"
            labelPlacement="outside"
@@ -163,6 +146,7 @@ const RegisterForm = () => {
       }}
       render={({ field: { value, onChange, onBlur, ref }, fieldState: { invalid, error } }) => (
         <Input
+          className='max-md:col-span-1 col-span-2'
           ref={ref}
           isRequired
           errorMessage={error?.message}
@@ -195,14 +179,15 @@ const RegisterForm = () => {
         />
       )}
     />
-
+<div className='w-full grid grid-cols-2 max-md:grid-cols-1 gap-3'>
+    <Button className="w-full font-medium " variant='bordered' color="primary" size='lg' type="button"  onPress={()=>setStep(2)} >
+     Previus
+    </Button>
     <Button className='w-full font-medium' color='primary' type="submit" size='lg' isLoading={isLoading}>S&apos;inscrire</Button>
-
-    <div className='w-full flex justify-center'>
-         
- <span className="text-neutral-500 text-nowrap"> Vous avez déjà un compte ?  </span>
- <Link href={'/auth/login'} className=" text-primary font-medium text-nowrap"> Connectez-vous  </Link>
     </div>
+    
+
+   
   </Form>
 
 
