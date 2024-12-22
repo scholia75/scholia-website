@@ -35,7 +35,7 @@ export const getStudnet=async(id:string)=>{
      const student:StudnetType={
         id:data.$id,
         firstname:data.firstname,
-        lastname:data.firstname,
+        lastname:data.lastname,
         phone:data.phone,
         birthcountry:data.birthcountry,
         birthdate:parseDate(data.birthdate),
