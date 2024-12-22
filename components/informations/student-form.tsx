@@ -19,6 +19,7 @@ const handleUpdateStudent=async(student:StudnetType)=>{
     setIsLoading(true)
   try {
     await updateStudent(student)
+    setStudent(student)
     toast.success('Compte modifié avec succès')
   } catch (error) {
     if(error instanceof Error){
@@ -34,7 +35,7 @@ const handleUpdateStudent=async(student:StudnetType)=>{
 
   const onSubmit=async(data: StudnetType) => {
    if(isCreate){
-    setStudent(student)
+    setStudent(data)
     setStep(3)
    }else{
     await handleUpdateStudent(data)
