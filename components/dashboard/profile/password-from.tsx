@@ -42,7 +42,7 @@ const PasswordForm = () => {
 
   return (
   
-     <Card className='p-3  max-w-md mx-auto'>
+     <Card className='p-3  w-full mx-auto'>
   
     <CardBody>
     <Form onSubmit={handleSubmit(onSubmit)} className='gap-y-5'>

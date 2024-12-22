@@ -1,33 +1,45 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Button, Input, Form, DatePicker, Autocomplete, AutocompleteItem } from '@nextui-org/react';
+import { Button, Input, Form, DatePicker, Autocomplete, AutocompleteItem, cn } from '@nextui-org/react';
 import {   StudnetType } from '@/types';
 import { countries } from '@/constants';
 import useRegistrationStore from '@/stores/useRegistrationStore';
-import {parseDate} from "@internationalized/date";
-import useStudentStore from '@/stores/useStudentStore';
-import { ID } from 'appwrite';
 
-const StudentForm = () => {
+import useUserStore from '@/stores/useUserStore';
+import toast from 'react-hot-toast';
+import { updateStudent } from '@/actions/student';
+
+const StudentForm = ({isCreate}:{isCreate:boolean}) => {
 const {setStep}=useRegistrationStore()
-const {setStudent}=useStudentStore()
+const {student,setStudent}=useUserStore()
+const [isLoading, setIsLoading] = useState(false)
+const handleUpdateStudent=async(student:StudnetType)=>{
+    setIsLoading(true)
+  try {
+    await updateStudent(student)
+    toast.success('Compte modifié avec succès')
+  } catch (error) {
+    if(error instanceof Error){
+        toast.error(error.message)
+    }
+  }finally{
+    setIsLoading(false)
+  }
+  }
   const { handleSubmit, control } = useForm({
-    defaultValues: {
-      id:ID.unique(),
-      firstname:'',
-      lastname:'',
-      birthdate:parseDate("2024-04-04"),
-      birthcountry:countries[0].label,
-      residancecountry:countries[0].label,
-      phone:''
-    },
+    defaultValues: student,
   });
 
-  const onSubmit=(data: StudnetType) => {
-      setStudent(data)
-     setStep(3)
+  const onSubmit=async(data: StudnetType) => {
+   if(isCreate){
+    setStudent(student)
+    setStep(3)
+   }else{
+    await handleUpdateStudent(data)
+   }
+   
   };
 
   return (
@@ -85,6 +97,31 @@ const {setStudent}=useStudentStore()
       )}
     />
      
+     <Controller
+      control={control}
+      name="phone"
+      rules={{
+        required: "Le téléphone est obligatoire.",
+       
+      }}
+      render={({ field: { value, onChange, onBlur, ref }, fieldState: { invalid, error } }) => (
+        <Input
+          ref={ref}
+          isRequired
+          errorMessage={error?.message}
+          validationBehavior="aria"
+          isInvalid={invalid}
+          label="Téléphone"
+          labelPlacement="outside"
+          type="text"
+          placeholder="Entrez votre téléphone"
+          value={value}
+          onBlur={onBlur}
+          onChange={onChange}
+         
+        />
+      )}
+    />
    <Controller
       control={control}
       name="birthdate"
@@ -95,7 +132,7 @@ const {setStudent}=useStudentStore()
         <DatePicker
         ref={ref}
       isRequired
-      className="max-md:col-span-1 col-span-2"
+     
       label="Date de naissance"
       labelPlacement="outside"
       errorMessage={error?.message}
@@ -166,12 +203,14 @@ const {setStudent}=useStudentStore()
     </Autocomplete>
   )}
 />
-    <div className='max-md:col-span-1 col-span-2 grid grid-cols-2 max-md:grid-cols-1 gap-3'>
-    <Button className="w-full font-medium " variant='bordered' color="primary" size='lg' type="button"  onPress={()=>setStep(1)} >
+    <div className={cn('max-md:col-span-1 col-span-2 ',isCreate && 'grid grid-cols-2 max-md:grid-cols-1 gap-3')}>
+  {
+    isCreate &&   <Button className="w-full font-medium " variant='bordered' color="primary" size='lg' type="button"  onPress={()=>setStep(1)} >
     Précédent
     </Button>
-    <Button className="w-full font-medium " color="primary" size='lg' type="submit"  >
-     Suivant
+  }
+    <Button className="w-full font-medium " color="primary" size='lg' type="submit" isLoading={isLoading}   >
+     {isCreate ?'Suivant':'Savegarder'}
     </Button>
     </div>
    

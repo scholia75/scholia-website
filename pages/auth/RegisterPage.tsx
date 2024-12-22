@@ -11,9 +11,12 @@ import { CheckIcon,CheckCircleIcon } from '@heroicons/react/24/outline';
 import { cn } from '@nextui-org/react'
 import StudentForm from '@/components/informations/student-form'
 import PartnerForm from '@/components/informations/partner-form'
+
+
 const RegisterPage = () => {
   const {step,userType}=useRegistrationStore()
-  
+
+ 
   return (
     <section className='py-20'>
      
@@ -58,7 +61,7 @@ const RegisterPage = () => {
      {
          step===1? <UserTypeCards/>:
          step===2 && userType==='student'?
-         <StudentForm/>:
+         <StudentForm  isCreate />:
          step===2 && userType==='partner'?
          <PartnerForm/>:
          step===3 ? <RegisterFrom/>:
@@ -77,7 +80,7 @@ const RegisterPage = () => {
     whileInView={{ y: 0, opacity: 1 }} 
     viewport={{ once: true, amount: 0.5 }} 
     transition={{ type: "spring", stiffness: 50, duration: 0.8 }}
-  className=' space-y-4 '>
+  className=' space-y-4  max-md:order-first'>
     <ul className='space-y-4'>
    {
     admissionSteps.map(({title,description,icon},index)=>(
