@@ -6,37 +6,38 @@ export const navData=[
 ]
 
 export const dashboardNavs = [
-    {
+    {   
+        id:1,
         name: 'Tableau de bord',
         link: '/dashboard',
         icon: 'HomeIcon'
     },
-    {
+    {   id:2,
         name: 'Admins',
         link: '/dashboard/admins',
         icon:'UsersIcon'
     },
-    {
+    {    id:3,
         name: 'Partenaire',
         link: '/dashboard/partners',
         icon: 'UserGroupIcon'
     },
-    {
+    {    id:4,
         name: 'Étudiants',
         link: '/dashboard/students',
         icon: 'AcademicCapIcon'
     },
-    {
+    {    id:5,
         name: 'Admissions',
         link: '/dashboard/admissions',
         icon: 'DocumentIcon'
     },
-    {
+    {    id:6,
         name: 'Formations',
         link: '/dashboard/training',
         icon:'ClipboardDocumentListIcon'
     },
-    {
+    {   id:7,
         name: 'Niveaux',
         link: '/dashboard/levels',
         icon:'QueueListIcon'

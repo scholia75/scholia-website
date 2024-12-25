@@ -1,5 +1,12 @@
 import { CalendarDate } from "@nextui-org/react";
 
+
+export interface NavDataType{
+    id:number,
+    name: string,
+    link: string,
+    icon: string
+}
 export interface RegisterFormType{
     email:string;
     password:string;

@@ -64,3 +64,4 @@ export const updateStudent=async(student:StudnetType)=>{
 
         return data
 }
+
