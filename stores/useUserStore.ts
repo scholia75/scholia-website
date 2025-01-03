@@ -1,68 +1,189 @@
-import { StudnetType, UserType } from '@/types';
+import { AdminType, PartnerType, StudnetType, UserType } from '@/types';
 import { create } from 'zustand';
-import {parseDate} from "@internationalized/date";
+import { parseDate } from '@internationalized/date';
 import { ID } from 'appwrite';
+
 // Zustand store type
 interface UserStore {
-  user: UserType | null; // Holds the user object or null if no user is logged in
-  student:StudnetType;
-  setStudent:(student:StudnetType)=>void
-  setUser: (user: UserType) => void; // Action to set/update the user
-  clearUser: () => void; // Action to clear/reset the user
-  updateAvatar: (avatar: string) => void; // Action to update the avatar
-  updateUser: (updates: Partial<UserType>) => void; // Action to update specific user fields
-
+  type: UserType | null; // Holds the user object or null if no user is logged in
+  student: StudnetType; // Student type data
+  partner: PartnerType | null; // Partner type data
+  admin: AdminType | null; // Admin type data
+  setStudent: (student: StudnetType) => void; // Action to set/update the student
+  setPartner: (partner: PartnerType) => void; // Action to set/update the partner
+  setAdmin: (admin: AdminType) => void; // Action to set/update the admin
+  setUserType: (type: UserType) => void; // Action to set/update the user type
+  clearUser: () => void; // Action to clear/reset the user data
+  updateAvatar: (avatar: string) => void; // Action to update the avatar based on user type
+  updateUser: (updates: Partial<StudnetType | PartnerType | AdminType>) => void; // Action to update specific user fields
+  updateEmail: (email: string) => void; // Action to update email for the current user type
 }
 
 // Create the Zustand store
 const useUserStore = create<UserStore>((set) => ({
-  user: null, // Initial user state is null
- student:{
-     id:ID.unique(),
-     birthcountry:'',
-     firstname:'',
-     lastname:'',
-     birthdate:parseDate("2024-04-04"),
-     residancecountry:'',
-     phone:''
+  type: null, // Initial user type is null
+  student: {
+    id: ID.unique(),
+    birthcountry: '',
+    firstname: '',
+    lastname: '',
+    birthdate: parseDate('2024-04-04'),
+    residancecountry: '',
+    phone: '',
+    email: '',
+    avatar: '',
   },
- setStudent(student) {
+  partner: null, // Initial partner state
+  admin: null, // Initial admin state
+
+  // Action to set/update the student
+  setStudent: (student) =>
     set(() => ({
-        student,
-      }))
- },
-  // Action to set/update the user
-  setUser: (user) =>
-    set(() => ({
-      user,
+      student,
     })),
 
-  // Action to clear/reset the user
+  // Action to set/update the partner
+  setPartner: (partner) =>
+    set(() => ({
+      partner,
+    })),
+
+  // Action to set/update the admin
+  setAdmin: (admin) =>
+    set(() => ({
+      admin,
+    })),
+
+  // Action to set/update the user type
+  setUserType: (type) =>
+    set(() => ({
+      type,
+    })),
+
+  // Action to clear/reset the user data
   clearUser: () =>
     set(() => ({
-      user: null,
+      type: null,
+      student: {
+        id: ID.unique(),
+        birthcountry: '',
+        firstname: '',
+        lastname: '',
+        birthdate: parseDate('2024-04-04'),
+        residancecountry: '',
+        phone: '',
+        email: '',
+        avatar: '',
+        status: 'en attente',
+      },
+      partner: null,
+      admin: null,
     })),
 
-  // Action to update the avatar
+  // Action to update the avatar based on user type
   updateAvatar: (avatar) =>
-    set((state) => ({
-      user: state.user
-        ? { ...state.user, avatar } // Update only the avatar if the user exists
-        : null,
-    })),
+    set((state) => {
+      const { type } = state;
 
-  // Action to update specific fields of the user object
+      if (type === 'student') {
+        return {
+          student: {
+            ...state.student,
+            avatar,
+          },
+        };
+      }
+
+      if (type === 'partner' && state.partner) {
+        return {
+          partner: {
+            ...state.partner,
+            avatar,
+          },
+        };
+      }
+
+      if (type === 'admin' && state.admin) {
+        return {
+          admin: {
+            ...state.admin,
+            avatar,
+          },
+        };
+      }
+
+      return {}; // No updates if type is null or the specific user type object is null
+    }),
+
+  // Action to update specific fields based on user type
   updateUser: (updates) =>
-    set((state) => ({
-      user: state.user
-        ? {
-            ...state.user, // Retain existing fields
-            ...updates, // Merge updated fields
-          }
-        : null, // If no user exists, return null
-    })),
+    set((state) => {
+      const { type } = state;
 
- 
+      if (type === 'student') {
+        return {
+          student: {
+            ...state.student,
+            ...updates,
+          },
+        };
+      }
+
+      if (type === 'partner' && state.partner) {
+        return {
+          partner: {
+            ...state.partner,
+            ...updates,
+          },
+        };
+      }
+
+      if (type === 'admin' && state.admin) {
+        return {
+          admin: {
+            ...state.admin,
+            ...updates,
+          },
+        };
+      }
+
+      return {}; // No updates if type is null or the specific user type object is null
+    }),
+
+  // Action to update the email based on user type
+  updateEmail: (email) =>
+    set((state) => {
+      const { type } = state;
+
+      if (type === 'student') {
+        return {
+          student: {
+            ...state.student,
+            email,
+          },
+        };
+      }
+
+      if (type === 'partner' && state.partner) {
+        return {
+          partner: {
+            ...state.partner,
+            email,
+          },
+        };
+      }
+
+      if (type === 'admin' && state.admin) {
+        return {
+          admin: {
+            ...state.admin,
+            email,
+          },
+        };
+      }
+
+      return {}; // No updates if type is null or the specific user type object is null
+    }),
 }));
 
 export default useUserStore;

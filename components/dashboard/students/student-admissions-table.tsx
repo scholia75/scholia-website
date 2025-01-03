@@ -11,7 +11,7 @@ import {
     Pagination,
     Spinner,
     Input,
-  
+   
   } from "@nextui-org/react";
 import { StudnetType } from '@/types';
 import useUserStore from '@/stores/useUserStore';
@@ -29,7 +29,7 @@ import { useRouter } from 'next/navigation';
     { name: "Actes", uid: "actions" },
   ];
 
-const StudentsTable = () => {
+const StudentAdmissionsTable = () => {
     const [students, setStudents] = useState<StudnetType[]>([])
     const [total, setTotal] = useState(0)
     const [page, setPage] = useState(1);
@@ -106,7 +106,7 @@ const StudentsTable = () => {
                         </button>
                     );
       default:
-        return <p>{cellValue as string}</p>; // Ensure safe rendering
+        return <p>{cellValue as string}</p>; 
     }
   }, [router]);
 
@@ -186,4 +186,4 @@ const StudentsTable = () => {
   )
 }
 
-export default StudentsTable
+export default StudentAdmissionsTable

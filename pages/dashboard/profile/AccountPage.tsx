@@ -3,13 +3,13 @@ import useUserStore from '@/stores/useUserStore'
 
 import React from 'react'
 
-import StudentAccount from '@/components/dashboard/profile/student-account';
 import AdminAccount from '@/components/dashboard/profile/admin-account';
+import StudentAccount from '@/components/dashboard/profile/student/student-account';
 
 const AccountPage = () => {
-    const {user}=useUserStore()
+    const {type}=useUserStore()
     
- if(user?.type==='admin') {
+ if(type==='admin') {
   return <AdminAccount/>
 }else {
   return <StudentAccount/>

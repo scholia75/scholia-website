@@ -12,17 +12,17 @@ import { NavDataType } from '@/types';
 
 const Sidebare = () => {
     const pathname = usePathname();
-    const {user}=useUserStore()
+    const {type}=useUserStore()
     const [navData, setNavData] = useState<NavDataType[]>(dashboardNavs)
     useEffect(() => {
-      if(user?.type==='student'){
+      if(type==='student'){
         const data=dashboardNavs.filter(item=>(item.id===1 || item.id===5)) 
          setNavData(data)
-      }else if(user?.type==='partner'){
+      }else if(type==='partner'){
         const data=dashboardNavs.filter(item=>(item.id===1 || item.id===5)) 
         setNavData(data)
       }
-    }, [user])
+    }, [type])
     
     return (
         <aside className=" w-96 border-r h-screen overflow-hidden p-6 max-md:absolute bg-content1 -left-96">

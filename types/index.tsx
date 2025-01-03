@@ -1,6 +1,18 @@
 import { CalendarDate } from "@nextui-org/react";
 
 
+
+export type DocumentType= 'passport'|'bac'|'language'|'cv'|'marks'
+
+export interface FileType{
+ id:string;
+ fileName:string;
+ type:DocumentType;
+ fileUrl:string;
+ size:number;
+ status:'en attente'|'valide'|'invalide';
+ note:string
+}
 export interface NavDataType{
     id:number,
     name: string,
@@ -27,12 +39,14 @@ export interface RegisterFormType{
     newPassword:string;
     confirmPassword:string
  }
-export interface UserType{
+
+export type UserType='admin' |'partner'|'student'
+
+export interface AdminType{
     id:string;
     name:string;
     email:string;
     avatar:string;
-    type:'admin' |'partner'|'student';
 }
 
 export interface StudnetType{
@@ -43,4 +57,24 @@ export interface StudnetType{
     birthcountry:string;
     residancecountry:string;
     phone:string;
+    email:string;
+    avatar:string;
+  
+}
+
+export interface PartnerType{
+    id:string;
+    name:string;
+    country:string;
+    phone:string;
+    email:string;
+    avatar:string;
+    status:'en attente'|'actif'
+}
+
+export interface TrainingType{
+    id:string;
+    shortName:string;
+    longName:string;
+    level:number;
 }

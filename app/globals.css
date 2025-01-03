@@ -16,6 +16,7 @@
  a{
   @apply outline-none border-none
  }
+
 }
 @layer utilities{
   .h1 {
@@ -36,5 +37,6 @@
   .body {
     color: var(--body);
    }
+ 
 }
 

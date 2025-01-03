@@ -8,12 +8,13 @@ import { RegisterFormType } from '@/types';
 import toast from 'react-hot-toast';
 import { register } from '@/actions/auth/register';
 import useRegistrationStore from '@/stores/useRegistrationStore';
-import useStudentStore from '@/stores/useStudentStore';
-import { createStudent } from '@/actions/student';
+
+import { createStudent, updateStudentEmail } from '@/actions/student';
+import useUserStore from '@/stores/useUserStore';
 
 const RegisterForm = () => {
   
-    const {student}=useStudentStore()
+    const {student}=useUserStore()
      const [isPasswordVisible, setIsPasswordVisible] = useState(false);
      const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
      const [isLoading, setIsLoading] = useState(false)
@@ -35,6 +36,8 @@ const RegisterForm = () => {
         const id=student.id
         await register(id,email,password,name,userType)
         await createStudent(student)
+        await updateStudentEmail(email,id)
+        
       }
         
        // toast.success('Lien de vérification envoyé à votre email')

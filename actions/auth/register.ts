@@ -1,4 +1,4 @@
-import { account, ID } from "@/lib/appwrite"
+import { account } from "@/lib/appwrite"
 
 //const url=process.env.NEXT_PUBLIC_URL || ''
 const url="https://main.d3smjn9bxaomax.amplifyapp.com"
@@ -7,8 +7,8 @@ export const register=async(id:string,email:string,password:string,name:string,u
    
    await account.create(id,email,password,name)
    await account.createEmailPasswordSession(email, password);
+   await account.updatePrefs({userType: userType});
    
-   await account.updatePrefs({userType: userType, avatar: ''});
    await account.createVerification(url+'/auth/verification')
    await account.deleteSession('current')
 }

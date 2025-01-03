@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, Input, Form, DatePicker, Autocomplete, AutocompleteItem, cn } from '@nextui-org/react';
 import {   StudnetType } from '@/types';
@@ -29,9 +29,11 @@ const handleUpdateStudent=async(student:StudnetType)=>{
     setIsLoading(false)
   }
   }
-  const { handleSubmit, control } = useForm({
+
+  const { handleSubmit, control, reset } = useForm<StudnetType>({
     defaultValues: student,
   });
+
 
   const onSubmit=async(data: StudnetType) => {
    if(isCreate){
@@ -43,6 +45,11 @@ const handleUpdateStudent=async(student:StudnetType)=>{
    
   };
 
+  useEffect(() => {
+    if (student) {
+      reset(student); // Dynamically update form values when `student` changes
+    }
+  }, [student, reset]);
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className="max-md:grid-cols-1 grid grid-cols-2 gap-5">
     {/* First Name field Field */}

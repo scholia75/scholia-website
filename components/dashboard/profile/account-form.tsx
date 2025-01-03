@@ -10,15 +10,13 @@ import { updateAccount } from '@/actions/acoount';
 import toast from 'react-hot-toast';
 
 const AccountForm = () => {
-   const {user,updateUser}=useUserStore()
+   const {admin,updateUser}=useUserStore()
    const [isLoading, setisLoading] = useState(false)
  
   const { handleSubmit, control } = useForm({
     defaultValues: {
-      name: user?.name || '',
-      email: user?.email || '',
-    
-      
+      name: admin?.name || '',
+      email: admin?.email || '',
     },
   });
 
@@ -27,7 +25,7 @@ const AccountForm = () => {
   try {
     updateUser(data)
   
-   if(user){
+   if(admin){
      await updateAccount(data)
      toast.success('Compte enregistré avec succès')
    }

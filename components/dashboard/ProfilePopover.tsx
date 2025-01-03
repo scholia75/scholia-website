@@ -13,7 +13,8 @@ import {
   } from "@nextui-org/react";
 import useUserStore from '@/stores/useUserStore';
 const ProfilePopover = () => {
-   const {user,clearUser}=useUserStore()
+   const {type,student,admin,clearUser}=useUserStore()
+  
     const router=useRouter()
 
     const logout = async () => {
@@ -46,13 +47,13 @@ const ProfilePopover = () => {
       <div className='flex flex-row items-center gap-x-2 cursor-pointer'>
         <ChevronDownIcon className='size-6'/>
       <p className='text-lg font-medium capitalize'>
-            {user?.name}
+            {type==='admin'?admin?.name:student.firstname+' '+student.lastname}
         </p>
           <Avatar
             isBordered
             as="button"
             className="transition-transform"
-            src={user?.avatar} 
+            src={type==='admin'?admin?.avatar:student.avatar} 
           />
       </div>
         </DropdownTrigger>
@@ -81,7 +82,7 @@ const ProfilePopover = () => {
             <User
               avatarProps={{
                 size: "sm",
-                src: user?.avatar,
+                src:type==='admin'? admin?.avatar:student.avatar,
                 
                 isBordered:true
               }}
@@ -90,8 +91,8 @@ const ProfilePopover = () => {
                 description: "text-default-500",
 
               }}
-              description={user?.email}
-              name={user?.name}
+              description={type==='admin'?admin?.email:student.email}
+              name={type==='admin'?admin?.name:student.firstname+' '+student.lastname}
             />
           </DropdownItem>
               </DropdownSection>

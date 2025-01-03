@@ -37,11 +37,7 @@ export const dashboardNavs = [
         link: '/dashboard/training',
         icon:'ClipboardDocumentListIcon'
     },
-    {   id:7,
-        name: 'Niveaux',
-        link: '/dashboard/levels',
-        icon:'QueueListIcon'
-    }
+   
 ];
 
 export const admissionSteps = [
@@ -284,6 +280,27 @@ export const admissionSteps = [
   { label: "Zambie", key: "zm" },
   { label: "Zimbabwe", key: "zw" },
 ];
+
+export const levels=[
+ {
+  key:'1',
+  id:1,
+  number:5,
+  bac:2
+ },
+ {
+  key:'2',
+  id:2,
+  number:6,
+  bac:3
+ },
+ {
+  key:'3',
+  id:3,
+  number:7,
+  bac:5
+ },
+]
 
   
   

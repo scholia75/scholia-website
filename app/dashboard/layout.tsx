@@ -9,11 +9,11 @@ import React, { ReactNode } from 'react'
 const DashbaordLayout = ({children}:{children:ReactNode}) => {
   return (
 <SessionProvider>
-<div className='w-full flex flex-row'>
+<div className='w-full flex flex-row h-screen'>
 <Sidebare/>
-   <main className='bg-content2 w-full h-screen'>
+   <main className='bg-content2 w-full h-screen '>
     <DashbaordHeader/>
-   <section className='p-6'>
+   <section className='p-6  '>
    {children}
    </section>
    </main>
