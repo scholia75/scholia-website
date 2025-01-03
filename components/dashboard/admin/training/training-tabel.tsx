@@ -36,7 +36,7 @@ const TrainingTable = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [filterValue, setFilterValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  
  
   const [openTrainingModal, setOpenTrainingModal] = useState(false)
   const rowsPerPage = 10;
@@ -47,7 +47,7 @@ const TrainingTable = () => {
 
 
   const fetchStudents = useCallback(async () => {
-    setIsLoading(true);
+
     try {
       const data = filterValue.trim()
         ? await searchTraining(filterValue, rowsPerPage, page)
@@ -58,9 +58,7 @@ const TrainingTable = () => {
       setTotal(total || 0);
     } catch (error) {
       console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
+    } 
   }, [filterValue, page, rowsPerPage]);
 
   const onSearchChange = useCallback(
